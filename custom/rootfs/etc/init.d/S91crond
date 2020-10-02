@@ -1,0 +1,27 @@
+#!/bin/sh
+#
+
+# Check for config file and read it
+CRONTAB_CONFIG=/etc/crontab
+test -r $CRONTAB_CONFIG || exit 6
+
+case "$1" in
+    start)
+        printf "Start Crond... "
+        mkdir -p /var/spool/cron
+        mkdir -p /var/spool/cron/crontabs
+        cp /etc/crontab /var/spool/cron/crontabs/root
+        crond -b -S -l 0
+        echo "done"
+        ;;
+    stop)
+        killall crond
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        exit 1
+        ;;
+esac
+
+
+exit 0

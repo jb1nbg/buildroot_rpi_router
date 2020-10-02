@@ -1,0 +1,4 @@
+config BR2_PACKAGE_QUECTEL_CM
+	bool "quectel_cm"
+	help
+	  Quectel Connection Manager

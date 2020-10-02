@@ -1,0 +1,25 @@
+diff -ruN patch_original/Makefile patch_modified/Makefile
+--- patch_original/Makefile	2020-01-15 13:52:36.056972693 +0100
++++ patch_modified/Makefile	2020-01-15 13:57:33.624654084 +0100
+@@ -1,16 +1,15 @@
+-OBJS = quectel-CM.o
+-CC = $(CROSS-COMPILE)gcc
++OBJS = main.o dhcpclient.o GobiNetCM.o MPQMUX.o QMIThread.o QmiWwanCM.o udhcpc.o util.o 
++CC = $(CROSS_COMPILE)gcc
+ OUT_BIN = quectel-CM
+ dep_file = .$@.d
+ 
+ all: $(OBJS)
+-		$(CC) $(LDFLAGS) -g -o $(OUT_BIN) $^
+-		
++	$(CC) -pthread $(LDFLAGS) -g -o $(OUT_BIN) $^
++
+ %.o: %.c
+-		$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<
++	$(CC) $(CFLAGS) -Wp,-MD,$(dep_file) -c -o $@ $<
+ 
+ clean:
+ 	rm -rf *.o
+ 	rm -rf $(OUT_BIN)
+ 	rm -f $(shell find -name "*.d")
+-

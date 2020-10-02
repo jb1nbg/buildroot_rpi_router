@@ -1,0 +1,10 @@
+#!/bin/sh
+
+file=/dev/sdcard
+
+if [ -e "$file" ]; then
+    echo "File exists"
+    sudo dd if=./output/images/sdcard.img of=$file
+else 
+    echo "File does not exist"
+fi

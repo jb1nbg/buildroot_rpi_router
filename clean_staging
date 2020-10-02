@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rm -rf output/staging
+find output/ -name ".stamp_staging_installed" |xargs rm -rf 

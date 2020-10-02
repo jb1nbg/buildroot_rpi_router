@@ -1,0 +1,3 @@
+#!/bin/sh
+
+loadkmap </etc/de.kmap
